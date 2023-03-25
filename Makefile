@@ -1,3 +1,5 @@
+SHELL = /bin/sh
+
 DOCKER ?= docker
 
 DOCKER_IMAGE = repro-pytype-import-error-pydantic
