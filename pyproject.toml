@@ -8,8 +8,11 @@ readme = "README.md"
 packages = [{include = "repro_pytype_import_error_pydantic"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "~3.10"
 
+
+[tool.poetry.group.dev.dependencies]
+pytype = "^2023.3.13"
 
 [build-system]
 requires = ["poetry-core"]
