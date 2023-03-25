@@ -9,6 +9,7 @@ packages = [{include = "repro_pytype_import_error_pydantic"}]
 
 [tool.poetry.dependencies]
 python = "~3.10"
+pydantic = "^1.10.7"
 
 
 [tool.poetry.group.dev.dependencies]
