@@ -12,15 +12,16 @@ RUN set -x; \
     ${POETRY_HOME}/bin/poetry --version && \
     chmod -R a+rwx ${POETRY_HOME}
 
+ENV HOME="/tmp/home"
 ENV PATH="/opt/poetry/bin:$PATH"
 
 
 FROM dev AS build
 
-WORKDIR /tmp
+WORKDIR /tmp/repro
 
-COPY . /tmp
+COPY . /tmp/repro
 
 RUN poetry add pydantic pytype
 
-CMD ["poetry", "run", "python", "/tmp/example.py"]
+CMD ["poetry", "run", "python", "/tmp/repro/example.py"]
