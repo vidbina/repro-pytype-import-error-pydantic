@@ -44,7 +44,19 @@ if __name__ == "__main__":
     print("here is trouble")
 ```
 
-🚨 Note that you may consider disabling the import error as demonstrated below which is quite dangerous as it disables typechecking on the offending resource. In the snippet, you'll notice that the type `Bogus` is imported which doesn't exist. We furthermore use this Bogus class as part of our definition of `Thing` and our use of `Bogus` therein is also not being type-checked.
+A workaround suggested in https://github.com/google/pytype/issues/1105#issue-1102450867 is to just `import pydantic` and use the longer-form model references.
+
+```python
+import pydantic
+
+class Thing(pydantic.BaseModel):
+    name: str = pydantic.Field(example="Something fun")
+
+if __name__ == "__main__":
+    print("here is trouble")
+```
+
+🚨 Note that disabling the import error as demonstrated below is quite dangerous as it disables typechecking on the offending resource. In the spinnet below, notice how the type `Bogus` is imported although it doesn't exist. This `Bogus` class is used as part of the definition of `Thing` and silencing pytype on the import-error produces no warning of any follow-on issues.
 
 ```python
 from pydantic import BaseModel, Field, Bogus  # pytype: disable=import-error
